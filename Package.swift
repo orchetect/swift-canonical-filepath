@@ -11,11 +11,13 @@ let package = Package(
             targets: ["SwiftCanonicalFilePath"]
         )
     ],
-    dependencies: packageDependencies,
+    dependencies: [.package(url: "https://github.com/orchetect/swift-extensions", from: "3.0.0")],
     targets: [
         .target(
             name: "SwiftCanonicalFilePath",
-            dependencies: targetDependencies,
+            dependencies: [
+                .product(name: "SwiftExtensions", package: "swift-extensions", condition: .when(platforms: [.macOS])),
+            ],
             swiftSettings: [
                 .define("DEBUG", .when(configuration: .debug))
             ]
@@ -28,14 +30,6 @@ let package = Package(
         )
     ]
 )
-
-#if os(macOS)
-let packageDependencies: [Package.Dependency] = [.package(url: "https://github.com/orchetect/swift-extensions", from: "3.0.0")]
-let targetDependencies: [Target.Dependency] = [.product(name: "SwiftExtensions", package: "swift-extensions")]
-#else
-let packageDependencies: [Package.Dependency] = []
-let targetDependencies: [Target.Dependency] = []
-#endif
 
 #if canImport(Foundation) || canImport(CoreFoundation)
     #if canImport(Foundation)
