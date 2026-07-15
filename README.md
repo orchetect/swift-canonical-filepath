@@ -4,7 +4,7 @@
 
 Provides the `CanonicalFilePath` type for Swift on macOS.
 
-This type wraps a `FilePath` instance from the System framework by performing file path canonicalization on it.
+This type wraps a [`FilePath`](https://developer.apple.com/documentation/system/filepath) instance from the System framework by performing file path canonicalization on it.
 
 > [!NOTE]
 >
@@ -25,19 +25,14 @@ The type also makes it clear that the file path has been canonicalized when the 
 This library is available as a Swift Package Manager (SPM) package.
 
 1. Add the **swift-canonical-filepath** repo as a dependency.
-
    ```swift
    .package(url: "https://github.com/orchetect/swift-canonical-filepath", from: "1.0.0")
    ```
-
 2. Add **SwiftCanonicalFilePath** to your target.
-
    ```swift
    .product(name: "SwiftCanonicalFilePath", package: "swift-canonical-filepath")
    ```
-
 3. Import **SwiftCanonicalFilePath** to use it.
-
    ```swift
    import SwiftCanonicalFilePath
    ```
