@@ -4,7 +4,7 @@
 //  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
-#if canImport(Foundation) && canImport(System)
+#if os(macOS)
 
 import Foundation
 import System
