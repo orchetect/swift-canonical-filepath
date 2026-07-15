@@ -6,11 +6,19 @@ Provides the `CanonicalFilePath` type for Swift on macOS.
 
 This type wraps a `FilePath` instance from the System framework by performing file path canonicalization on it.
 
-This type makes it clear that the file path has been canonicalized, which makes comparing two instances more reliable.
-
-> Note:
+> [!NOTE]
 >
 > This type is only available on macOS as the API required is not available on other platforms.
+
+## Motivation
+
+Simple string comparison between two path strings is not sufficient to determine if they point to the same file system node.
+
+Similarly, while the [`FilePath`](https://developer.apple.com/documentation/system/filepath) type provided by the macOS SDK's System framework is a useful type, it is still intended for abstract file path encapsulation and comparing two instances for equality will not indicate if the paths are identical in the file system.
+
+The `CanonicalFilePath` type provided by this package standardizes the path upon initialization of the type by using path canonicalization API provided by the system. This allows two instances to be compared to determine if they point to the same file system node reliably.
+
+The type also makes it clear that the file path has been canonicalized when the type is passed to methods or stored in variables.
 
 ## Getting Started
 
